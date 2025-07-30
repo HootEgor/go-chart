@@ -185,7 +185,7 @@ func (pc PieChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 			for i, line := range lines {
 				lineBox := r.MeasureText(line)       // Measure each line separately for width
 				lineX := lx - (lineBox.Width() >> 1) // Center horizontally
-				r.Text(line, lineX, startY+i*lineHeight)
+				r.Text(line, lineX, startY+i*lineHeight+v.Style.TextLineSpacing)
 			}
 		}
 		total = total + v.Value
