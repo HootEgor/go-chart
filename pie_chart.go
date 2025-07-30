@@ -174,22 +174,29 @@ func (pc PieChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 			delta2 = RadianAdd(delta2, _pi2)
 			lx, ly = CirclePoint(cx, cy, labelRadius, delta2)
 
-			// Measure the height once (for spacing)
+			// Measure height for spacing
 			tb := r.MeasureText(v.Label)
 			lineHeight := tb.Height()
 
-			// Calculate vertical starting point
+			// Split label into lines
 			lines := strings.Split(v.Label, "\n")
+
+			// Calculate vertical start position
 			startY := ly + (lineHeight >> 1) - (len(lines)-1)*lineHeight/2
 
 			for i, line := range lines {
 				lineBox := r.MeasureText(line)       // Measure each line separately for width
 				lineX := lx - (lineBox.Width() >> 1) // Center horizontally
-				r.Text(line, lineX, startY+i*lineHeight+v.Style.TextLineSpacing)
+
+				// Apply line spacing (multiply i by lineHeight + spacing)
+				yPos := startY + i*(lineHeight+v.Style.TextLineSpacing)
+
+				r.Text(line, lineX, yPos)
 			}
 		}
-		total = total + v.Value
+		total += v.Value
 	}
+
 }
 
 func (pc PieChart) finalizeValues(values []Value) ([]Value, error) {
