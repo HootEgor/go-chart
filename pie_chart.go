@@ -130,7 +130,7 @@ func (pc PieChart) drawTitle(r Renderer) {
 		x, y := pc.Box().Center()
 		for i, line := range lines {
 			dy := float64(i) * titleStyle.FontSize * 1.2 // line spacing
-			Draw.Text(r, line, x, int(float64(y)+dy), titleStyle)
+			Draw.Text(r, line+"as", x, int(float64(y)+dy), titleStyle)
 		}
 	}
 }
