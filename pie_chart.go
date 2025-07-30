@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"strings"
 
 	"github.com/golang/freetype/truetype"
 )
@@ -115,9 +116,22 @@ func (pc PieChart) drawCanvas(r Renderer, canvasBox Box) {
 	Draw.Box(r, canvasBox, pc.getCanvasStyle())
 }
 
+//func (pc PieChart) drawTitle(r Renderer) {
+//	if len(pc.Title) > 0 && !pc.TitleStyle.Hidden {
+//		Draw.TextWithin(r, pc.Title, pc.Box(), pc.styleDefaultsTitle())
+//	}
+//}
+
 func (pc PieChart) drawTitle(r Renderer) {
 	if len(pc.Title) > 0 && !pc.TitleStyle.Hidden {
-		Draw.TextWithin(r, pc.Title, pc.Box(), pc.styleDefaultsTitle())
+		lines := strings.Split(pc.Title, "\n")
+		titleStyle := pc.styleDefaultsTitle()
+
+		x, y := pc.Box().Center()
+		for i, line := range lines {
+			dy := float64(i) * titleStyle.FontSize * 1.2 // line spacing
+			Draw.Text(r, line, x, int(float64(y)+dy), titleStyle)
+		}
 	}
 }
 
