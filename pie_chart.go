@@ -3,10 +3,9 @@ package chart
 import (
 	"errors"
 	"fmt"
+	"github.com/golang/freetype/truetype"
 	"io"
 	"strings"
-
-	"github.com/golang/freetype/truetype"
 )
 
 // PieChart is a chart that draws sections of a circle based on percentages.
@@ -116,24 +115,24 @@ func (pc PieChart) drawCanvas(r Renderer, canvasBox Box) {
 	Draw.Box(r, canvasBox, pc.getCanvasStyle())
 }
 
-//func (pc PieChart) drawTitle(r Renderer) {
-//	if len(pc.Title) > 0 && !pc.TitleStyle.Hidden {
-//		Draw.TextWithin(r, pc.Title, pc.Box(), pc.styleDefaultsTitle())
-//	}
-//}
-
 func (pc PieChart) drawTitle(r Renderer) {
 	if len(pc.Title) > 0 && !pc.TitleStyle.Hidden {
-		lines := strings.Split(pc.Title, "\n")
-		titleStyle := pc.styleDefaultsTitle()
-
-		x, y := pc.Box().Center()
-		for i, line := range lines {
-			dy := float64(i) * titleStyle.FontSize * 1.2 // line spacing
-			Draw.Text(r, line+"as", x, int(float64(y)+dy), titleStyle)
-		}
+		Draw.TextWithin(r, pc.Title, pc.Box(), pc.styleDefaultsTitle())
 	}
 }
+
+//func (pc PieChart) drawTitle(r Renderer) {
+//	if len(pc.Title) > 0 && !pc.TitleStyle.Hidden {
+//		lines := strings.Split(pc.Title, "\n")
+//		titleStyle := pc.styleDefaultsTitle()
+//
+//		x, y := pc.Box().Center()
+//		for i, line := range lines {
+//			dy := float64(i) * titleStyle.FontSize * 1.2 // line spacing
+//			Draw.Text(r, line+"as", x, int(float64(y)+dy), titleStyle)
+//		}
+//	}
+//}
 
 func (pc PieChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 	cx, cy := canvasBox.Center()
@@ -185,8 +184,14 @@ func (pc PieChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 			if ly < 0 {
 				lx = 0
 			}
-
-			r.Text(v.Label, lx, ly)
+			lines := strings.Split(v.Label, "\n")
+			lineHeight := tb.Height()
+			startX := lx - (tb.Width() >> 1)
+			startY := ly + (tb.Height() >> 1) - (len(lines)-1)*lineHeight/2
+			for i, line := range lines {
+				r.Text(line, startX, startY+i*lineHeight)
+			}
+			//r.Text(v.Label, lx, ly)
 		}
 		total = total + v.Value
 	}
