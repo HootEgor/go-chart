@@ -5,33 +5,47 @@ import "github.com/HootEgor/go-chart/v2/drawing"
 var (
 	// ColorWhite is white.
 	ColorWhite = drawing.Color{R: 255, G: 255, B: 255, A: 255}
-	// ColorBlue is the basic theme blue color.
-	ColorBlue = drawing.Color{R: 0, G: 116, B: 217, A: 255}
-	// ColorCyan is the basic theme cyan color.
-	ColorCyan = drawing.Color{R: 0, G: 217, B: 210, A: 255}
-	// ColorGreen is the basic theme green color.
-	ColorGreen = drawing.Color{R: 0, G: 217, B: 101, A: 255}
-	// ColorRed is the basic theme red color.
-	ColorRed = drawing.Color{R: 217, G: 0, B: 116, A: 255}
-	// ColorOrange is the basic theme orange color.
-	ColorOrange = drawing.Color{R: 217, G: 101, B: 0, A: 255}
-	// ColorYellow is the basic theme yellow color.
-	ColorYellow = drawing.Color{R: 217, G: 210, B: 0, A: 255}
-	// ColorBlack is the basic theme black color.
-	ColorBlack = drawing.Color{R: 51, G: 51, B: 51, A: 255}
-	// ColorLightGray is the basic theme light gray color.
-	ColorLightGray = drawing.Color{R: 239, G: 239, B: 239, A: 255}
 
-	// ColorAlternateBlue is a alternate theme color.
-	ColorAlternateBlue = drawing.Color{R: 106, G: 195, B: 203, A: 255}
-	// ColorAlternateGreen is a alternate theme color.
-	ColorAlternateGreen = drawing.Color{R: 42, G: 190, B: 137, A: 255}
-	// ColorAlternateGray is a alternate theme color.
-	ColorAlternateGray = drawing.Color{R: 110, G: 128, B: 139, A: 255}
-	// ColorAlternateYellow is a alternate theme color.
-	ColorAlternateYellow = drawing.Color{R: 240, G: 174, B: 90, A: 255}
-	// ColorAlternateLightGray is a alternate theme color.
-	ColorAlternateLightGray = drawing.Color{R: 187, G: 190, B: 191, A: 255}
+	// ColorBlue is a modern theme blue.
+	ColorBlue = drawing.Color{R: 52, G: 152, B: 219, A: 255} // Softer, flat blue
+
+	// ColorCyan is a vibrant theme cyan.
+	ColorCyan = drawing.Color{R: 26, G: 188, B: 156, A: 255} // Teal-like cyan
+
+	// ColorGreen is a modern theme green.
+	ColorGreen = drawing.Color{R: 46, G: 204, B: 113, A: 255} // Fresh green
+
+	// ColorRed is a modern theme red.
+	ColorRed = drawing.Color{R: 231, G: 76, B: 60, A: 255} // Softer red
+
+	// ColorOrange is a modern theme orange.
+	ColorOrange = drawing.Color{R: 243, G: 156, B: 18, A: 255} // Warm amber
+
+	// ColorYellow is a softer, warm yellow.
+	ColorYellow = drawing.Color{R: 241, G: 196, B: 15, A: 255} // Gold-like yellow
+
+	// ColorBlack is a deeper gray-black.
+	ColorBlack = drawing.Color{R: 44, G: 62, B: 80, A: 255} // Charcoal black
+
+	// ColorLightGray is a softer light gray.
+	ColorLightGray = drawing.Color{R: 236, G: 240, B: 241, A: 255} // Subtle off-white gray
+
+	// Alternate theme colors
+
+	// ColorAlternateBlue is a soft pastel blue.
+	ColorAlternateBlue = drawing.Color{R: 116, G: 185, B: 255, A: 255}
+
+	// ColorAlternateGreen is a mint green.
+	ColorAlternateGreen = drawing.Color{R: 85, G: 239, B: 196, A: 255}
+
+	// ColorAlternateGray is a medium cool gray.
+	ColorAlternateGray = drawing.Color{R: 149, G: 165, B: 166, A: 255}
+
+	// ColorAlternateYellow is a peachy yellow.
+	ColorAlternateYellow = drawing.Color{R: 253, G: 203, B: 110, A: 255}
+
+	// ColorAlternateLightGray is a warm light gray.
+	ColorAlternateLightGray = drawing.Color{R: 223, G: 228, B: 234, A: 255}
 
 	// ColorTransparent is a transparent (alpha zero) color.
 	ColorTransparent = drawing.Color{R: 1, G: 1, B: 1, A: 0}
