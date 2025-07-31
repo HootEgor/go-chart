@@ -115,9 +115,29 @@ func (pc PieChart) drawCanvas(r Renderer, canvasBox Box) {
 	Draw.Box(r, canvasBox, pc.getCanvasStyle())
 }
 
+//func (pc PieChart) drawTitle(r Renderer) {
+//	if len(pc.Title) > 0 && !pc.TitleStyle.Hidden {
+//		Draw.TextWithin(r, pc.Title, pc.Box(), pc.styleDefaultsTitle())
+//	}
+//}
+
 func (pc PieChart) drawTitle(r Renderer) {
 	if len(pc.Title) > 0 && !pc.TitleStyle.Hidden {
-		Draw.TextWithin(r, pc.Title, pc.Box(), pc.styleDefaultsTitle())
+		style := pc.styleDefaultsTitle()
+
+		// Measure text size
+		tb := r.MeasureText(pc.Title)
+
+		// Center horizontally
+		x := (pc.GetWidth() - tb.Width()) >> 1
+
+		// Position inside top padding region instead of absolute top
+		y := style.Padding.Top + int(style.FontSize)
+
+		r.SetFont(style.GetFont(pc.defaultFont))
+		r.SetFontSize(style.GetFontSize(DefaultFontSize))
+		r.SetFillColor(style.GetFontColor(DefaultTextColor))
+		r.Text(pc.Title, x, y)
 	}
 }
 
